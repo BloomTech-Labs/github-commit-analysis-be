@@ -6,7 +6,7 @@
 
 # API Documentation
 
-#### 1️⃣ Backend delpoyed at [🚫name service here](🚫add URL here) <br>
+#### 1️⃣ Backend deployed at [🚫name service here](🚫add URL here) <br>
 
 ## 1️⃣ Getting started
 
@@ -21,12 +21,14 @@ To get the server running locally:
 
 ### Backend framework goes here
 
-🚫 Why did you choose this framework?
-
--    Point One
--    Point Two
--    Point Three
--    Point Four
+- *Database:* [PostgreSQL](https://www.postgresql.org/)
+  > The standard to follow per the Labs Engineering Standards.
+- *API Framework:* [GraphQL](https://graphql.org/)
+  > Although this will carry a slight learning curve for our team we believe that our product is best suited to this style. Beyond that, we also plan on using GitHubs v4 GraphQL API so we aim to have style consistency through our project.
+- *RunTime:* [NodeJS](https://nodejs.org/)
+  > We feel that product quality will be improved through the sharing of common knowledge and reusable components.
+- *Web Application Framework:* [Express](https://expressjs.com/)
+  > Minimal and Flexible. We feel that it provides a robust set of features that will support our development process.  
 
 ## 2️⃣ Endpoints
 
@@ -168,5 +170,5 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Frontend Documentation](🚫link to your frontend readme here) for details on the fronend of our project.
+See [Frontend Documentation](https://github.com/Lambda-School-Labs/github-commit-analysis-fe) for details on the fronend of our project.
 🚫 Add DS iOS and/or Andriod links here if applicable.

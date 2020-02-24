@@ -6,7 +6,7 @@
 
 # API Documentation
 
-#### 1️⃣ Backend deployed at [🚫name service here](🚫add URL here) <br>
+#### Backend deployed through [Heroku](https://commit-analysis-be.herokuapp.com/) <br>
 
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 ![Deploy Vendor](https://img.shields.io/badge/deployed_through-Heroku-7056bf.svg)
@@ -175,5 +175,5 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Frontend Documentation](https://github.com/Lambda-School-Labs/github-commit-analysis-fe) for details on the fronend of our project.
+See [Frontend Documentation](https://github.com/Lambda-School-Labs/github-commit-analysis-fe) for details on the fronend of our project.<br />
 🚫 Add DS link here

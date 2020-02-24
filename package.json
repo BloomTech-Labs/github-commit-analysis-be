@@ -1,0 +1,40 @@
+{
+  "name": "gitstats-backend",
+  "version": "1.0.0",
+  "description": "backend api for gitstats.dev",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "server": "nodemon index.js",
+    "test": "cross-env DB_ENV=testing jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lambda-School-Labs/github-commit-analysis-be.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Lambda-School-Labs/github-commit-analysis-be/issues"
+  },
+  "homepage": "https://github.com/Lambda-School-Labs/github-commit-analysis-be#readme",
+  "devDependencies": {
+    "cross-env": "^7.0.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-jest": "^23.8.0",
+    "jest": "^25.1.0",
+    "nodemon": "^2.0.2",
+    "supertest": "^4.0.2"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^3.21.2",
+    "morgan": "^1.9.1"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  }
+}

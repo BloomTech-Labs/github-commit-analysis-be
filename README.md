@@ -1,12 +1,18 @@
 🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline. Feel free to add your own flare to it.
 
-🚫 The numbers 1️⃣ through 3️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
+🚫 The numbers 1️⃣ through 3️⃣ next to each item represent the week that part of the docs needs to be comepleted by. Make sure to delete the numbers by the end of Labs.
 
-🚫 Each student has a required minimum number of meaningful PRs each week per the rubric.  Contributing to docs does NOT count as a PR to meet your weekly requirements.
+🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
 
 # API Documentation
 
 #### 1️⃣ Backend deployed at [🚫name service here](🚫add URL here) <br>
+
+![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
+![Deploy Vendor](https://img.shields.io/badge/deployed_through-Heroku-7056bf.svg)
+<br />
+[![Maintainability](https://api.codeclimate.com/v1/badges/77446110b9b61fd36d08/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/github-commit-analysis-be/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/77446110b9b61fd36d08/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/github-commit-analysis-be/test_coverage)
 
 ## 1️⃣ Getting started
 
@@ -21,14 +27,14 @@ To get the server running locally:
 
 ### Backend framework goes here
 
-- *Database:* [PostgreSQL](https://www.postgresql.org/)
+- _Database:_ [PostgreSQL](https://www.postgresql.org/)
   > The standard to follow per the Labs Engineering Standards.
-- *API Framework:* [GraphQL](https://graphql.org/)
+- _API Framework:_ [GraphQL](https://graphql.org/)
   > Although this will carry a slight learning curve for our team we believe that our product is best suited to this style. Beyond that, we also plan on using GitHubs v4 GraphQL API so we aim to have style consistency through our project.
-- *RunTime:* [NodeJS](https://nodejs.org/)
+- _RunTime:_ [NodeJS](https://nodejs.org/)
   > We feel that product quality will be improved through the sharing of common knowledge and reusable components.
-- *Web Application Framework:* [Express](https://expressjs.com/)
-  > Minimal and Flexible. We feel that it provides a robust set of features that will support our development process.  
+- _Web Application Framework:_ [Express](https://expressjs.com/)
+  > Minimal and Flexible. We feel that it provides a robust set of features that will support our development process.
 
 ## 2️⃣ Endpoints
 
@@ -125,13 +131,12 @@ In order for the app to function correctly, the user must set up their own envir
 create a .env file that includes the following:
 
 🚫 These are just examples, replace them with the specifics for your app
-    
-    *  STAGING_DB - optional development db for using functionality not available in SQLite
-    *  NODE_ENV - set to "development" until ready for "production"
-    *  JWT_SECRET - you can generate this by using a python shell and running import random''.join([random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#\$%^&amp;*(-*=+)') for i in range(50)])
-    *  SENDGRID_API_KEY - this is generated in your Sendgrid account
-    *  stripe_secret - this is generated in the Stripe dashboard
-    
+  
+ _ STAGING_DB - optional development db for using functionality not available in SQLite
+_ NODE_ENV - set to "development" until ready for "production"
+_ JWT_SECRET - you can generate this by using a python shell and running import random''.join([random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#\$%^&amp;_(-_=+)') for i in range(50)])
+_ SENDGRID_API_KEY - this is generated in your Sendgrid account \* stripe_secret - this is generated in the Stripe dashboard
+
 ## Contributing
 
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
@@ -140,11 +145,12 @@ Please note we have a [code of conduct](./code_of_conduct.md). Please follow it 
 
 ### Issue/Bug Request
 
- **If you are having an issue with the existing project code, please submit a bug report under the following guidelines:**
- - Check first to see if your issue has already been reported.
- - Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
- - Create a live example of the problem.
- - Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes,  where you believe the issue is originating from, and any potential solutions you have considered.
+**If you are having an issue with the existing project code, please submit a bug report under the following guidelines:**
+
+- Check first to see if your issue has already been reported.
+- Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
+- Create a live example of the problem.
+- Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes, where you believe the issue is originating from, and any potential solutions you have considered.
 
 ### Feature Requests
 

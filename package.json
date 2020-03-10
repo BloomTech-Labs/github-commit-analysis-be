@@ -30,7 +30,9 @@
     "ejs": "^3.0.1",
     "express": "^4.17.1",
     "helmet": "^3.21.2",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "passport": "^0.4.1",
+    "passport-github": "^1.1.0"
   },
   "jest": {
     "testEnvironment": "node",

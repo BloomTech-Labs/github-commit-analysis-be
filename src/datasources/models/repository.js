@@ -32,6 +32,10 @@ const repository = (sequelize, DataTypes) => {
           notEmpty: true,
         },
       },
+      data: {
+        type: DataTypes.JSON,
+        allowNull: false,
+      },
     },
     {
       timestamps: false,

@@ -10,23 +10,21 @@ const typeDefs = gql`
     location: String
     login: String!
     name: String
-    repoList: [RepoSummary]!
-    repoCount: Int
     websiteUrl: String
   }
-  type RepoSummary {
-    createdAt: String
+  type Repository {
     description: String
     homepageUrl: String
     id: ID!
     name: String
     nameWithOwner: String!
+    data: String!
   }
 
   type Query {
-    getViewer: User
-    getRepoCount: Int
-    getRepoList: [RepoSummary]
+    getUser(userID: ID!): User
+    getRepoCount(userID: ID!): Int
+    getRepoList(userID: ID!): [Repository]
   }
 `;
 

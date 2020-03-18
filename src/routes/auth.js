@@ -1,29 +1,18 @@
 const router = require('express').Router();
 const passport = require('passport');
-const { GITSTATS_URL } = require('../config/secrets');
 
-/* AUTH REQUEST
- * Send Authentication request to GitHub.
- *
- */
-router.get(
-  '/github',
-  passport.authenticate('github', {
-    failureRedirect: `${GITSTATS_URL}`,
-  }),
-);
+router.get('/github', passport.authenticate('github'));
 
-// AUTH CALLBACK
 router.get(
   '/github/callback',
   passport.authenticate('github', {
-    failureRedirect: `${GITSTATS_URL}`,
+    failureRedirect: `${process.env.GITSTATS_URL}`,
   }),
-  (req, res, next) => {
+  (req, res) => {
     res.send('you reached the callback URI');
     // Will be fired if authentication is successful. return to FE!
     // Make sure the return is sent with the appropriate headers
-    // res.redirect(`${GITSTATS_URL}`);
+    // res.redirect(`${process.env.GITSTATS_URL}`);
   },
 );
 

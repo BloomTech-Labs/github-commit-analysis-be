@@ -1,2 +1,5 @@
-const request = require('supertest');
-const api = require('../src/api');
+describe('Sample Test', () => {
+  it('should test that true === true', () => {
+    expect(true).toBe(true);
+  });
+});

@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "test": "cross-env DB_ENV=testing jest"
+    "test": "cross-env DB_ENV=testing jest",
+    "coverage": "npm run test -- --coverage --watchAll=false"
   },
   "repository": {
     "type": "git",

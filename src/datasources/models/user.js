@@ -50,9 +50,6 @@ const user = (sequelize, DataTypes) => {
       websiteUrl: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-          isUrl: true,
-        },
       },
     },
     {

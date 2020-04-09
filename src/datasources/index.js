@@ -8,6 +8,7 @@ module.exports.createStore = () => {
   const models = {
     user: sequelize.import('./models/user'),
     repository: sequelize.import('./models/repository'),
+    session: sequelize.import('./models/session'),
   };
 
   Object.keys(models).forEach((key) => {

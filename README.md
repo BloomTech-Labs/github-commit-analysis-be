@@ -1,9 +1,3 @@
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline. Feel free to add your own flare to it.
-
-🚫 The numbers 1️⃣ through 3️⃣ next to each item represent the week that part of the docs needs to be completed by. Make sure to delete the numbers by the end of Labs.
-
-🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
-
 # API Documentation
 
 #### Backend deployed through [Heroku](https://commit-analysis-be.herokuapp.com/) <br>
@@ -59,40 +53,48 @@ To get the server running locally:
 
 # Data Model
 
-🚫This is just an example. Replace this with your data model
-
-#### 2️⃣ ORGANIZATIONS
-
----
-
-```
-{
-  id: UUID
-  name: STRING
-  industry: STRING
-  paid: BOOLEAN
-  customer_id: STRING
-  subscription_id: STRING
-}
-```
-
 #### USERS
 
 ---
 
 ```
 {
-  id: UUID
-  organization_id: UUID foreign key in ORGANIZATIONS table
-  first_name: STRING
-  last_name: STRING
-  role: STRING [ 'owner', 'supervisor', 'employee' ]
-  email: STRING
-  phone: STRING
-  cal_visit: BOOLEAN
-  emp_visit: BOOLEAN
-  emailpref: BOOLEAN
-  phonepref: BOOLEAN
+  avatarUrl STRING
+  bio TEXT
+  githubUrl STRING
+  githubID ING [PK]
+  isHireable BOOLEAN
+  location STRING
+  login STRING
+  name STRING
+  websiteUrl STRING
+}
+```
+
+#### REPOSITORIES
+
+---
+
+```
+{
+  description STRING
+  homepageUrl STRING
+  repoID INT [PK]
+  name STRING
+  nameWithOwner STRING
+  data JSON
+}
+```
+
+#### SESSIONS
+
+---
+
+```
+{
+  sid INT [PK]
+  accessToken STRING
+  jwt STRING
 }
 ```
 

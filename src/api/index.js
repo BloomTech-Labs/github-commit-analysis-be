@@ -37,34 +37,15 @@ module.exports.createExpressApp = (store) => {
           let profileInfo = breakdownProfile(profile);
           let storeUser = await store.user.findByPk(profileInfo.id);
 
-          if (storeUser) {
-            (storeUser) => storeUser.dataValues; // currently just using if stored. will need to diff later and update as needed.
-            let jwt = createToken(storeUser.id);
-            store.session
-              .create({
-                sid: uuid(),
-                jwt,
-                accessToken,
-              })
-              .then(done(null, jwt));
-          } else {
+          if (storeUser) createSession(storeUser, store.session, accessToken, done)
+          else {
             let created = await store.user.create({ ...profileInfo });
             if (created) {
               let newUser = await store.user.findByPk(profileInfo.id);
-              (newUser) => newUser.dataValues;
-              let jwt = createToken(newUser.id);
-              store.session
-                .create({
-                  sid: uuid(),
-                  jwt,
-                  accessToken,
-                })
-                .then(done(null, jwt));
+              createSession(newUser, store.session, accessToken, done);
             }
           }
-        } catch (error) {
-          console.error(error);
-        }
+        } catch (error) { console.error(error) }
       },
     ),
   );
@@ -85,6 +66,16 @@ const createToken = (id) =>
   jsonwebtoken.sign({ id }, process.env.SESSION_SECRET, {
     expiresIn: 1000 * 60 * 60,
   });
+
+const createSession = (user, session, accessToken, done) => {
+  let jwt = createToken(user.dataValues.id);
+  session
+    .create({
+      sid: uuid(),
+      jwt,
+      accessToken,
+    })
+    .then(done(null, jwt));}
 
 const breakdownProfile = (profile) => ({
   avatarUrl: `${profile._json.avatar_url}`,

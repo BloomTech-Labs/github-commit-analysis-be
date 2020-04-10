@@ -24,11 +24,6 @@ module.exports.createExpressApp = (store) => {
     next();
   };
 
-  if (app.get('env') === 'production') {
-    app.set('trust proxy', 1);
-    sessionSettings.cookie.secure = true;
-  }
-
   passport.use(
     new githubStrategy(
       {
@@ -39,27 +34,15 @@ module.exports.createExpressApp = (store) => {
       async (accessToken, refreshToken, profile, done) => {
         //this is BAD error handling. get some better stuff in place FOR EACH PIECE BELOW ASAP!
         try {
-          let profileInfo = {
-            avatarUrl: `${profile._json.avatar_url}`,
-            bio: `${profile._json.bio}`,
-            githubUrl: `${profile._json.html_url}`,
-            id: profile._json.id,
-            isHireable: profile._json.hireable || false,
-            location: `${profile._json.location}`,
-            login: `${profile._json.login}`,
-            name: `${profile._json.name}`,
-            websiteUrl: `${profile._json.blog}`,
-          };
-
-          let sid = uuid();
+          let profileInfo = breakdownProfile(profile);
           let storeUser = await store.user.findByPk(profileInfo.id);
-          // currently just using if stored. will need to diff later and update as needed.
+
           if (storeUser) {
-            (storeUser) => storeUser.dataValues;
+            (storeUser) => storeUser.dataValues; // currently just using if stored. will need to diff later and update as needed.
             let jwt = createToken(storeUser.id);
             store.session
               .create({
-                sid,
+                sid: uuid(),
                 jwt,
                 accessToken,
               })
@@ -72,7 +55,7 @@ module.exports.createExpressApp = (store) => {
               let jwt = createToken(newUser.id);
               store.session
                 .create({
-                  sid,
+                  sid: uuid(),
                   jwt,
                   accessToken,
                 })
@@ -80,7 +63,7 @@ module.exports.createExpressApp = (store) => {
             }
           }
         } catch (error) {
-          console.log(error);
+          console.error(error);
         }
       },
     ),
@@ -102,6 +85,18 @@ const createToken = (id) =>
   jsonwebtoken.sign({ id }, process.env.SESSION_SECRET, {
     expiresIn: 1000 * 60 * 60,
   });
+
+const breakdownProfile = (profile) => ({
+  avatarUrl: `${profile._json.avatar_url}`,
+  bio: `${profile._json.bio}`,
+  githubUrl: `${profile._json.html_url}`,
+  id: profile._json.id,
+  isHireable: profile._json.hireable || false,
+  location: `${profile._json.location}`,
+  login: `${profile._json.login}`,
+  name: `${profile._json.name}`,
+  websiteUrl: `${profile._json.blog}`,
+});
 
 module.exports.createApolloServer = () => {
   const server = new ApolloServer({

@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const { createStore } = require('./datasources');
-const { createExpressApp, createApolloServer } = require('./api');
+const { createExpressApp } = require('./api');
 
 const { sequelize, models: store } = createStore();
 
@@ -14,14 +14,11 @@ sequelize
       .then(() => console.log(`✅ Database successfully synchronized.`))
       .then(() => {
         const app = createExpressApp(store);
-        const server = createApolloServer();
-
-        server.applyMiddleware({ app });
         app.set('view engine', 'ejs');
         app.listen(process.env.PORT, () => {
           console.log(
             `🚀 Server now listening at:`,
-            `http://localhost:${process.env.PORT}${server.graphqlPath}\n`,
+            `http://localhost:${process.env.PORT}\n`,
           );
         });
       })

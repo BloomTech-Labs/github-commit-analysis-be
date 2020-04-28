@@ -4,17 +4,12 @@ const repository = (sequelize, DataTypes) => {
     {
       description: {
         type: DataTypes.TEXT,
-        allowNull: false,
       },
       homepageUrl: {
         type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          isUrl: true,
-        },
       },
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         primaryKey: true,
       },
@@ -32,8 +27,20 @@ const repository = (sequelize, DataTypes) => {
           notEmpty: true,
         },
       },
-      data: {
-        type: DataTypes.JSON,
+      forkCount: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      watchCount: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      starCount: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      userId: {
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
     },

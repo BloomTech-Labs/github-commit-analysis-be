@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-module.exports.createStore = () => {
+const createStore = () => {
   const sequelize = new Sequelize(`${process.env.DATABASE_URL}`, {
     logging: false,
   });
@@ -17,3 +17,5 @@ module.exports.createStore = () => {
 
   return { sequelize, models };
 };
+
+module.exports = { createStore };

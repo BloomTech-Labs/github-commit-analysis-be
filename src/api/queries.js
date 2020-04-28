@@ -10,33 +10,10 @@ const getRepoTotal = (login) => `
     }
   `;
 
-// const getRepoList = (login, total) => `
-//     query {
-//       repositoryOwner(login: "${login}") {
-//         repositories(first: ${total}) {
-//           nodes {
-//             createdAt
-//             description
-//             homepageUrl
-//             id
-//             name
-//             nameWithOwner
-//             forkCount
-//             stargazers {
-//               totalCount
-//             }
-//             watchers {
-//               totalCount
-//             }
-//           }
-//         }
-//       }
-//     }
-//   `;
 const getRepoList = (login, total) => `
     query {
       repositoryOwner(login: "${login}") {
-        repositories(first: 1) {
+        repositories(first: ${total}) {
           nodes {
             createdAt
             description

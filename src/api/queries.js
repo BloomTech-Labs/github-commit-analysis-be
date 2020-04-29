@@ -53,11 +53,26 @@ const getRepositories = async (accessToken, login) => {
       accessToken,
       getRepoList(login, countData.user.repositories.totalCount),
     );
-
     return repoData.repositoryOwner.repositories.nodes;
   } catch (error) {
     console.error(error);
   }
 };
 
-module.exports = { getRepositories };
+const queryDS = async (requestType, login, repositoryName) => {
+  let { data } = await axios({
+    url: `${process.env.DS_BASE_URL}/${requestType}/${login}/${repositoryName}`,
+    method: `get`,
+  });
+  return data;
+};
+
+const getRepositoryInfo = async (login, repositoryName) => {
+  await queryDS(`getPRs`, login, repositoryName)
+    .then(async () => {
+      return await queryDS('summarize', login, repositoryName);
+    })
+    .catch((error) => error);
+};
+
+module.exports = { getRepositories, getRepositoryInfo };

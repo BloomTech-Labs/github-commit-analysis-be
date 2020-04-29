@@ -1,3 +1,7 @@
+# GitStats
+
+You can find the deployed project [HERE](https://commit-analysis.herokuapp.com/).
+
 # API Documentation
 
 #### Backend deployed through [Heroku](https://commit-analysis-be.herokuapp.com/) <br>

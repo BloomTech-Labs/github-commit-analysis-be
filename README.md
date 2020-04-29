@@ -14,46 +14,39 @@ To get the server running locally:
 
 - Clone this repo
 - **npm i** to install all required dependencies
-- **npm run server** to start the local development server
+- **npm run dev** to start the local development server
 - **npm run test** to start server using testing environment
 
 ### Backend framework goes here
 
 - _Database:_ [PostgreSQL](https://www.postgresql.org/)
   > The standard to follow per the Labs Engineering Standards.
-- _API Framework:_ [GraphQL](https://graphql.org/)
-  > Although this will carry a slight learning curve for our team we believe that our product is best suited to this style. Beyond that, we also plan on using GitHubs v4 GraphQL API so we aim to have style consistency through our project.
+- _API Framework:_ REST
+  > Although we are retrieving information from GitHub's v4 GraphQL API, internal endpoints were built as a RESTful API to keep within scope.
 - _RunTime:_ [NodeJS](https://nodejs.org/)
   > We feel that product quality will be improved through the sharing of common knowledge and reusable components.
 - _Web Application Framework:_ [Express](https://expressjs.com/)
   > Minimal and Flexible. We feel that it provides a robust set of features that will support our development process.
 
-## 2️⃣ Endpoints
+#### Auth Routes
 
-🚫This is a placeholder, replace the endpoints, access control, and description to match your project
-
-#### Organization Routes
-
-| Method | Endpoint                | Access Control | Description                                  |
-| ------ | ----------------------- | -------------- | -------------------------------------------- |
-| GET    | `/organizations/:orgId` | all users      | Returns the information for an organization. |
-| PUT    | `/organizations/:orgId` | owners         | Modify an existing organization.             |
-| DELETE | `/organizations/:orgId` | owners         | Delete an organization.                      |
+| Method | Endpoint                | Access Control | Description                                                            |
+| ------ | ----------------------- | -------------- | ---------------------------------------------------------------------- |
+| GET    | `/auth/github`          | all users      | Initiates authentication with GitHub                                   |
+| GET    | `/auth/github/callback` | internal only  | Receive code from initial auth to retrieve token and send to Front-End |
+| GET    | `/auth/verify`          | all users      | Receive token and, if valid, returns user information                  |
+| GET    | `/auth/logout`          | all users      | Delete an organization                                                 |
 
 #### User Routes
 
-| Method | Endpoint                | Access Control      | Description                                        |
-| ------ | ----------------------- | ------------------- | -------------------------------------------------- |
-| GET    | `/users/current`        | all users           | Returns info for the logged in user.               |
-| GET    | `/users/org/:userId`    | owners, supervisors | Returns all users for an organization.             |
-| GET    | `/users/:userId`        | owners, supervisors | Returns info for a single user.                    |
-| POST   | `/users/register/owner` | none                | Creates a new user as owner of a new organization. |
-| PUT    | `/users/:userId`        | owners, supervisors |                                                    |
-| DELETE | `/users/:userId`        | owners, supervisors |                                                    |
+| Method | Endpoint          | Access Control | Description                                |
+| ------ | ----------------- | -------------- | ------------------------------------------ |
+| GET    | `/repo`           | all users      | Returns list of repositories for the user  |
+| GET    | `/repo/:repoName` | all users      | Requests repo summary from the DS endpoint |
 
 # Data Model
 
-#### USERS
+#### USER
 
 ---
 
@@ -62,7 +55,7 @@ To get the server running locally:
   avatarUrl STRING
   bio TEXT
   githubUrl STRING
-  githubID ING [PK]
+  id INTEGER [PRIMARY KEY]
   isHireable BOOLEAN
   location STRING
   login STRING
@@ -71,18 +64,21 @@ To get the server running locally:
 }
 ```
 
-#### REPOSITORIES
+#### REPOSITORY
 
 ---
 
 ```
 {
-  description STRING
+  description TEXT
   homepageUrl STRING
-  repoID INT [PK]
+  id INTEGER [PRIMARY KEY]
   name STRING
   nameWithOwner STRING
-  data JSON
+  forkCount INTEGER
+  watchCount INTEGER
+  starCount INTEGER
+  userId INTEGER [repository.userId * => 1 user.id]
 }
 ```
 
@@ -92,51 +88,41 @@ To get the server running locally:
 
 ```
 {
-  sid INT [PK]
+  sid INTEGER [PRIMARY KEY]
   accessToken STRING
   jwt STRING
 }
 ```
 
-## 2️⃣ Actions
+## Actions
 
-🚫 This is an example, replace this with the actions that pertain to your backend
+`findOrCreateUser(rawProfileData, store)` -> Return user object
 
-`getOrgs()` -> Returns all organizations
+`updateOrCreateRepositories(userId, rawRepositories, store)` -> Return array of repos belonging to given user
 
-`getOrg(orgId)` -> Returns a single organization by ID
+`fetchRepository(repositoryId, store)` -> Return a single repository from the database
 
-`addOrg(org)` -> Returns the created org
+`fetchRepositories(userId, store)` -> Return array of user's repositories from the database
 
-`updateOrg(orgId)` -> Update an organization by ID
-
-`deleteOrg(orgId)` -> Delete an organization by ID
-<br>
-<br>
-<br>
-`getUsers(orgId)` -> if no param all users
-
-`getUser(userId)` -> Returns a single user by user ID
-
-`addUser(user object)` --> Creates a new user and returns that user. Also creates 7 availabilities defaulted to hours of operation for their organization.
-
-`updateUser(userId, changes object)` -> Updates a single user by ID.
-
-`deleteUser(userId)` -> deletes everything dependent on the user
-
-## 3️⃣ Environment Variables
+## Environment Variables
 
 In order for the app to function correctly, the user must set up their own environment variables.
 
 create a .env file that includes the following:
 
-🚫 These are just examples, replace them with the specifics for your app
+- PORT - used to specify the port to deploy to during development
+- AUTH_SECRET - passphrase
+- SESSION_SECRET - passphrase
 
-_ STAGING_DB - optional development db for using functionality not available in SQLite
-_ NODE\*ENV - set to "development" until ready for "production"
+- GITSTATS_URL - used to set front-end url
 
-- JWT*SECRET - you can generate this by using a python shell and running import random''.join([random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#\$%^&amp;*(-_=+)') for i in range(50)])
-  _ SENDGRID_API_KEY - this is generated in your Sendgrid account \* stripe_secret - this is generated in the Stripe dashboard
+- GITHUB_CLIENT_ID - used to set oauth access for user authentication
+- GITHUB_CLIENT_SECRET - used to set oauth access for user authentication
+- GITHUB_CALLBACK_URL - used to set callback url for passport handshake during user authentication
+
+- DATABASE_URL - used to set the database url for development. when deploying through Heroku this is set automatically once you add a Heroku PostgresQL database.
+
+- DS_BASE_URL - used to set the URL to pull statistics from. normally doesn't change but can be tweaked as needed rather than providing a hard-coded value.
 
 ## Contributing
 
@@ -177,5 +163,6 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Frontend Documentation](https://github.com/Lambda-School-Labs/github-commit-analysis-fe) for details on the fronend of our project.<br />
-🚫 Add DS link here
+See [Frontend Documentation](https://github.com/Lambda-School-Labs/github-commit-analysis-fe) for details on the frontend of our project.
+
+see [Database Documentation](https://github.com/Lambda-School-Labs/github-commit-analysis-ds) for details on the Data Science backend of our project.

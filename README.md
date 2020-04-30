@@ -8,6 +8,7 @@ You can find the deployed project [HERE](https://commit-analysis.herokuapp.com/)
 
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 ![Deploy Vendor](https://img.shields.io/badge/deployed_through-Heroku-7056bf.svg)
+![CI](https://github.com/Lambda-School-Labs/github-commit-analysis-be/workflows/CI/badge.svg)
 <br />
 [![Maintainability](https://api.codeclimate.com/v1/badges/77446110b9b61fd36d08/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/github-commit-analysis-be/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/77446110b9b61fd36d08/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/github-commit-analysis-be/test_coverage)

@@ -3,7 +3,7 @@ const axios = require('axios').default;
 const getRepoTotal = (login) => `
     query {
       user(login: "${login}") {
-        repositories {
+        repositories (affiliations: [OWNER]) {
           totalCount
         }
       }
@@ -13,7 +13,7 @@ const getRepoTotal = (login) => `
 const getRepoList = (login, total) => `
     query {
       repositoryOwner(login: "${login}") {
-        repositories(first: ${total}) {
+        repositories(first: ${total} affiliations: [OWNER]) {
           nodes {
             createdAt
             description

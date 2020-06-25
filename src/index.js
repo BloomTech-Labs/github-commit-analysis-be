@@ -3,9 +3,11 @@ require('dotenv').config();
 const { createStore } = require('./datasources');
 const { createExpressApp } = require('./api');
 
+// sequelize was initiated in /models/index.js
 const { sequelize, models: store } = createStore();
 
 sequelize
+// this connects the database
   .authenticate()
   .then(() => {
     console.log(`\n✅ Connection with database successfully established.`);

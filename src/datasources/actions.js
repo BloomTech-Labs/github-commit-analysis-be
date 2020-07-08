@@ -20,6 +20,7 @@ const cleanRepository = (id, repository) => ({
   watchCount: repository.watchers.totalCount,
   starCount: repository.stargazers.totalCount,
   userId: id,
+  createdAt: repository.createdAt,
 });
 
 const findOrCreateUser = async (rawProfile, store) => {

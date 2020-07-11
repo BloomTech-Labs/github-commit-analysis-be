@@ -20,6 +20,7 @@ const cleanRepository = (id, repository) => ({
   watchCount: repository.watchers.totalCount,
   starCount: repository.stargazers.totalCount,
   userId: id,
+  createdAt: repository.createdAt,
 });
 
 const findOrCreateUser = async (rawProfile, store) => {
@@ -61,7 +62,7 @@ const updateOrCreateRepositories = (id, repositories, store) => {
 
 const fetchRepository = async (repositoryId, store) => {
   try {
-    let repo = await store.repository.findByPk({ where: { id: repositoryID } });
+    let repo = await store.repository.findByPk({ where: { id: repositoryId } });
     return repo;
   } catch (error) {
     console.error(error);

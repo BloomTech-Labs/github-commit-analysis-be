@@ -1,4 +1,5 @@
 const repository = (sequelize, DataTypes) => {
+  // this defines the model and schema for this table
   const Repository = sequelize.define(
     'repository',
     {
@@ -43,6 +44,10 @@ const repository = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
+      createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      }
     },
     {
       timestamps: false,

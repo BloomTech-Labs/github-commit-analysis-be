@@ -21,6 +21,7 @@ const cleanRepository = (id, repository) => ({
   starCount: repository.stargazers.totalCount,
   userId: id,
   createdAt: repository.createdAt,
+  isStarred: repository.isStarred
 });
 
 const findOrCreateUser = async (rawProfile, store) => {

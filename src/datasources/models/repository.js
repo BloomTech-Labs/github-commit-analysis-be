@@ -47,6 +47,10 @@ const repository = (sequelize, DataTypes) => {
       createdAt: {
         type: DataTypes.DATE,
         allowNull: false,
+      },
+      isStarred: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
       }
     },
     {

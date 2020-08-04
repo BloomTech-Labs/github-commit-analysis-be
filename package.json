@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "test": "mocha",
-    "coverage": "nyc mocha"
+    "test": "mocha --require @babel/register",
+    "coverage": "nyc mocha --require @babel/register"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/Lambda-School-Labs/github-commit-analysis-be#readme",
   "devDependencies": {
+    "@babel/preset-env": "^7.11.0",
+    "@babel/register": "^7.10.5",
     "chai": "^4.2.0",
     "cross-env": "^7.0.0",
     "eslint": "^6.8.0",

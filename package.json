@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "test": "mocha --require @babel/register",
-    "coverage": "nyc mocha --require @babel/register"
+    "test": "mocha",
+    "coverage": "nyc mocha"
   },
   "repository": {
     "type": "git",

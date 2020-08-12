@@ -7,7 +7,7 @@
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
     "test": "mocha",
-    "coverage": "nyc mocha"
+    "coverage": "nyc --reporter=clover --reporter=text mocha"
   },
   "repository": {
     "type": "git",

@@ -51,6 +51,10 @@ const user = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      accessToken: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      }
     },
     {
       timestamps: false,

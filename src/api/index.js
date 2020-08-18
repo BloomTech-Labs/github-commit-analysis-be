@@ -33,7 +33,7 @@ module.exports.createExpressApp = (store) => {
       },
       async (accessToken, refreshToken, profile, done) => {
         try {
-          let user = await findOrCreateUser(profile, store);
+          let user = await findOrCreateUser(profile, store, accessToken);
           let repositories = await getRepositories(
             accessToken,
             user.dataValues.login,

@@ -1,4 +1,4 @@
-const cleanProfile = (profile) => ({
+const cleanProfile = (profile, accessToken) => ({
   avatarUrl: `${profile._json.avatar_url}`,
   bio: `${profile._json.bio}`,
   githubUrl: `${profile._json.html_url}`,
@@ -8,6 +8,7 @@ const cleanProfile = (profile) => ({
   login: `${profile._json.login}`,
   name: `${profile._json.name}`,
   websiteUrl: `${profile._json.blog}`,
+  accessToken: `${accessToken}`
 });
 
 const cleanRepository = (id, repository) => ({
@@ -24,8 +25,8 @@ const cleanRepository = (id, repository) => ({
   isStarred: repository.isStarred
 });
 
-const findOrCreateUser = async (rawProfile, store) => {
-  let profile = cleanProfile(rawProfile);
+const findOrCreateUser = async (rawProfile, store, accessToken) => {
+  let profile = cleanProfile(rawProfile, accessToken);
   try {
     let user = await store.user.findByPk(profile.id);
     if (!user) {
